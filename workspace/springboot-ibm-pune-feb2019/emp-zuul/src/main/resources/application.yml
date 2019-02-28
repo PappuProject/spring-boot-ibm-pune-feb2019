@@ -1,0 +1,23 @@
+server:
+  port: 9999
+  
+spring:
+  application:
+    name: emp-zuul
+
+zuul:
+  prefix: /api
+  
+  routes:
+    redirect-route:
+      path: /redirect/**
+      location: http://www.google.co.in
+    by-service:
+      path: /service/**
+      location: emp-data-service
+    by-client:
+      path: /client/**
+      location: hr-service
+    by-direct-uri:
+      path: /direct/**
+      location: http://localhost:8082
